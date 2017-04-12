@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
+using System.Windows.Controls.DataVisualization.Charting;
 
 
 namespace SampleWPS
@@ -45,6 +46,7 @@ namespace SampleWPS
             this.lstManagers.Items.Clear();
             //bind the listview to the datasource
             lstManagers.ItemsSource = dtManagers.DefaultView;
+            
         }
 
 
@@ -60,6 +62,8 @@ namespace SampleWPS
             //bind the datatable to the datagrid uwgAssetReturns
             this.uwgAssetReturns.ItemsSource = dt.DefaultView;
             
+            ((LineSeries)MyLineChart.Series[0]).ItemsSource = dt.DefaultView;
+            ((ColumnSeries)MyColumnChart.Series[0]).ItemsSource = dt.DefaultView;
         }
 
     }

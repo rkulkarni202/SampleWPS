@@ -1,4 +1,4 @@
-USE [Demo]
+USE [DemoDB]
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_sel_AssetsByType]    Script Date: 4/12/2017 5:53:11 AM ******/

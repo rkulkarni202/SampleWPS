@@ -1,4 +1,4 @@
-USE [Demo]
+USE [DemoDB]
 GO
 
 /****** Object:  StoredProcedure [dbo].[usp_Get_Lookup_Values]    Script Date: 4/12/2017 4:14:13 AM ******/
