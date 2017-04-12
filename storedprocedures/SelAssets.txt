@@ -1,0 +1,156 @@
+USE [Demo]
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_sel_AssetsByType]    Script Date: 4/12/2017 5:53:11 AM ******/
+SET ANSI_NULLS OFF
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+/*==============================================================================
+' Procedure:		usp_sel_AssetsByType
+' Purpose:     		selects benchmarks or managers or Total Return
+' Arguments:  	  	@pintType, @pintClass, @pintStyle, @pbitActiveOnly, @pdtStartDate, @pdtEndDate
+' Returns:		1 if successful, 0 if not       
+' -----------------------------------------------------------------------
+'==============================================================================*/
+CREATE PROCEDURE [dbo].[usp_sel_AssetsByType] (@pintType int, @pbitActiveOnly bit = 1,@pintClass int = 0, @pintStyle int = 0, @pdtFilterStart datetime = '1-31-3000', @pdtFilterEnd datetime = '1-31-1900') AS
+	
+		
+	IF @pdtFilterStart = '1-31-3000' AND @pdtFilterEnd ='1-31-1900' BEGIN
+	/*  Get the managers for the class- if class is 0, get all */
+		IF @pintClass = 0 BEGIN
+			SELECT
+				AssetID, AssetName		
+			FROM
+				Assets
+			WHERE
+				AssetTypeID = @pintType
+				AND Active In (@pbitActiveOnly,1)
+			ORDER BY
+				AssetName
+		END
+		ELSE IF @pintStyle = 0 BEGIN
+			SELECT
+				AssetID, AssetName
+			FROM
+				Assets
+			WHERE
+				AssetTypeID = @pintType
+				AND
+				ClassID = @pintClass
+				AND Active In (@pbitActiveOnly,1)
+			ORDER BY
+				AssetName
+		END
+		ELSE BEGIN
+			SELECT
+				AssetID, AssetName
+			FROM
+				Assets
+			WHERE
+				AssetTypeID = @pintType
+				AND
+				ClassID = @pintClass
+				AND
+				StyleID = @pintStyle	
+				AND Active In (@pbitActiveOnly,1)		
+			ORDER BY
+				AssetName
+		END
+	END
+	ELSE BEGIN
+		IF @pintClass = 0 BEGIN
+			SELECT
+				AssetID, AssetName		
+			FROM
+				Assets
+			WHERE
+				AssetTypeID = @pintType
+				AND
+				AssetID In (	SELECT 
+							AssetID
+						FROM
+							AssetReturns
+						WHERE
+							AssetReturnDate <= @pdtFilterStart)
+				AND
+				AssetID In (	SELECT 
+							AssetID
+						FROM
+							AssetReturns
+						WHERE
+							AssetReturnDate >= @pdtFilterEnd)
+				AND Active In (@pbitActiveOnly,1)
+			ORDER BY
+				AssetName
+		END
+		ELSE IF @pintStyle = 0 BEGIN
+			SELECT
+				AssetID, AssetName
+			FROM
+				Assets
+			WHERE
+				AssetTypeID = @pintType
+				AND
+				ClassID = @pintClass
+				AND
+				AssetID In (	SELECT 
+							AssetID
+						FROM
+							AssetReturns
+						WHERE
+							AssetReturnDate <= @pdtFilterStart)
+				AND
+				AssetID In (	SELECT 
+							AssetID
+						FROM
+							AssetReturns
+						WHERE
+							AssetReturnDate >= @pdtFilterEnd)
+				AND Active In (@pbitActiveOnly,1)
+			ORDER BY
+				AssetName
+		END
+		ELSE BEGIN
+			SELECT
+				AssetID, AssetName
+			FROM
+				Assets
+			WHERE
+				AssetTypeID = @pintType
+				AND
+				ClassID = @pintClass
+				AND
+				StyleID = @pintStyle
+				AND
+				AssetID In (	SELECT 
+							AssetID
+						FROM
+							AssetReturns
+						WHERE
+							AssetReturnDate <= @pdtFilterStart)
+				AND
+				AssetID In (	SELECT 
+							AssetID
+						FROM
+							AssetReturns
+						WHERE
+							AssetReturnDate >= @pdtFilterEnd)		
+				AND Active In (@pbitActiveOnly,1)		
+			ORDER BY
+				AssetName
+		END
+	END
+IF @@ERROR <> 0 BEGIN
+	RETURN(0)
+END
+ELSE BEGIN
+	RETURN(1)
+END
+GO
+
+
+
+

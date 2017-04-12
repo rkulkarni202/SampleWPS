@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf" xmlns:ig="http://schemas.infragistics.com/xaml" x:Class="SampleWPS.MainWindow"
+      
+        Title="MainWindow" Height="350" Width="696">
+
+    <Grid>
+
+        <ListView x:Name="lstManagers" HorizontalAlignment="Left" Height="279" Margin="10,10,0,0" VerticalAlignment="Top" Width="211" SelectionChanged="lstManagers_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Managers" Width="250" DisplayMemberBinding="{Binding AssetName}"/>
+                </GridView>
+            </ListView.View>
+
+
+        </ListView>
+
+        <TabControl HorizontalAlignment="Left" Height="283" Margin="226,6,0,0" VerticalAlignment="Top" Width="452">
+
+
+
+            <TabItem Header="Asset Returns" Width="220">
+                <Grid Background="#FFE5E5E5">
+
+                    <DataGrid x:Name="uwgAssetReturns"  Height="234" Width="350" 
+    					Grid.ColumnSpan="2" ColumnWidth="175" AlternatingRowBackground="LightBlue" AlternationCount="2"/>
+
+
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Charts" Width="220">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl HorizontalAlignment="Left" Height="221" Margin="10,20,0,0" VerticalAlignment="Top" Width="422"/>
+                      
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

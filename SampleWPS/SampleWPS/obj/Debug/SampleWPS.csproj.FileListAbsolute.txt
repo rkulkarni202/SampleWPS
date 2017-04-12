@@ -1,0 +1,17 @@
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\SampleWPS.exe.config
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\SampleWPS.exe
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\SampleWPS.pdb
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\MainWindow.baml
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\MainWindow.g.cs
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\App.g.cs
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS_MarkupCompile.cache
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS.g.resources
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS.Properties.Resources.resources
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS.csproj.GenerateResource.Cache
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS.exe
+c:\users\rohank\documents\visual studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS.pdb
+C:\Users\rohank\Documents\Visual Studio 2012\Projects\SampleWPS\SampleWPS\obj\Debug\SampleWPS.csprojResolveAssemblyReference.cache
+C:\Users\rohank\Documents\Visual Studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+C:\Users\rohank\Documents\Visual Studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\rohank\Documents\Visual Studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+C:\Users\rohank\Documents\Visual Studio 2012\Projects\SampleWPS\SampleWPS\bin\Debug\WPFToolkit.dll

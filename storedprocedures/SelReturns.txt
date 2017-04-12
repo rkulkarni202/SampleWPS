@@ -1,0 +1,36 @@
+USE [Demo]
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_sel_AssetReturns]    Script Date: 4/12/2017 5:55:35 AM ******/
+SET ANSI_NULLS OFF
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[usp_sel_AssetReturns] (@pintAssetID int, @pdtStart as datetime, @pdtEnd as datetime) AS
+/************************************************************************************
+Procedure:	usp_sel_AssetReturns
+Purpose:	select the Asset returns in the date range
+Parameters:	@pintAssetID - the asset ID
+		@pdtStart - the start date
+		@pdtEnd - the end date
+Returns:	1 if successful, 0 if not
+			
+************************************************************************************/
+	--Get the investment returns
+	SELECT
+		R.AssetReturnDate, R.AssetReturnPct,R.AssetreturnID,R.AssetMarketvalue
+	FROM
+		AssetReturns R join Assets A on R.Assetid=A.AssetID 
+	WHERE
+		R.AssetID = @pintAssetID AND (A.Active=1 or a.inactivedate >= @pdtstart) AND
+		R.AssetReturnDate BETWEEN @pdtStart AND @pdtEnd
+	ORDER BY
+		AssetReturnDate
+
+GO
+
+
+
+

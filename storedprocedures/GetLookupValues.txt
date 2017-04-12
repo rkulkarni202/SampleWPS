@@ -1,0 +1,69 @@
+USE [Demo]
+GO
+
+/****** Object:  StoredProcedure [dbo].[usp_Get_Lookup_Values]    Script Date: 4/12/2017 4:14:13 AM ******/
+SET ANSI_NULLS OFF
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+/*==============================================================================
+' Procedure:		usp_Get_Lookup_Values
+' Purpose:     		Retrieve the appropriate Lookup values from the Lookup table
+' Arguments:  	  	pstrSection - The value for the Section field
+'			pstrShortValue - The value for the ShortValue field (not required)
+' Returns:		Nothing	       
+' -----------------------------------------------------------------------
+'==============================================================================*/
+CREATE PROCEDURE [dbo].[usp_Get_Lookup_Values]
+(
+	@pstrSection varchar(25),
+	@pstrShortValue varchar(25)=Null
+)
+AS
+BEGIN
+	IF @pstrShortValue=NULL
+		BEGIN
+			SELECT
+				LookupID,
+				LongValue,
+				ShortValue,
+				SortOrder
+			FROM
+				Lookup
+			WHERE
+				Lookup.SectionName = @pstrSection
+			ORDER BY
+				SortOrder, LongValue
+		END
+	ELSE
+		BEGIN
+			SELECT
+				LookupID,
+				LongValue,
+				ShortValue,
+				SortOrder
+			FROM
+				Lookup
+			WHERE
+				Lookup.SectionName = @pstrSection
+			AND	Lookup.Shortvalue = @pstrShortValue
+			ORDER BY
+				SortOrder, LongValue
+		END
+		
+    IF (@@error!=0)
+    BEGIN
+        RETURN(0)
+    
+    END
+ELSE
+	BEGIN
+		RETURN(1)
+	END
+END
+
+GO
+
+
